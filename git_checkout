@@ -1,0 +1,11 @@
+#!/bin/bash -x
+RESOLVE=$1
+
+[ -z "$RESOLVE" ] && {
+  echo "No branch for resolve given!"
+  exit 1
+}
+git checkout develop
+git fetch origin
+git branch -D "$RESOLVE"
+git checkout -b "$RESOLVE" "origin/$RESOLVE"

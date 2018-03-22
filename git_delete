@@ -1,0 +1,17 @@
+#!/bin/bash -x
+
+git fetch
+git checkout develop
+
+for b in $(git branch --all | grep $(whoami) | grep remotes); do 
+B=$(echo "$b"|sed -e 's/^remotes\/origin\///')
+echo "$B" 
+git branch --no-merged origin/develop | grep "$B" || {
+   git push -d origin "$B"
+}
+done
+ 
+
+
+ for b in $(git branch --all | grep $(whoami) | grep -v remotes); do echo "$b"; git branch -D "$b" ;  done
+

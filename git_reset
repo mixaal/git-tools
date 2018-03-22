@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git fetch
+git checkout develop
+git reset --hard origin/develop
+git checkout develop
